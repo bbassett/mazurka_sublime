@@ -7,4 +7,5 @@
 ## usage
 
 * save file as {GET.ex|GET_test.exs|POST.ex|POST_test.exs}
-* menu -> Mazurka -> {Mazurka Resource | Mazurka Test}
+* menu -> Mazurka -> {Mazurka Resource|Mazurka Test}
+* or command palette -> {Mazurka Resouce|Mazurka Test}
