@@ -11,6 +11,10 @@ class ResourceCommand(sublime_plugin.TextCommand):
       routeArray = pathArray[webIndex - 1:]
       newRouteArray = list()
       apiName = ''
+      affordance = ''
+      params = ''
+      paramsList = list()
+      action = '\n    action do\n      %{\n\n      }\n    end'
       for i, part in enumerate(routeArray):
         if part.find('.ex') != -1: part = part.replace('.ex', '').upper()
         else: part = part.title()
@@ -22,15 +26,23 @@ class ResourceCommand(sublime_plugin.TextCommand):
         if part.lower() == 'web': part = 'Resource'
 
         if part.find('@') != -1:
-          part = str.split(part, '@')[1] + '_'
+          temp = str.split(part, '@')[1]
+          paramsList.append(temp.lower())
+          part = temp + '_'
 
         if i == 0: apiName = part
 
+        if part == 'POST': affordance = '\n\n    affordance do\n      %{\n\n      }\n    end'; action = '\n    action do\n\n    end'
+
         newRouteArray.append(part)
+
+      for param in paramsList:
+        params += '\n  param ' + param
+      if len(paramsList) > 0: params += '\n'
 
       resourceName = str.join('.', newRouteArray)
 
-      module = 'defmodule ' + resourceName + ' do\n  use ' + apiName + '.Resource\n\n  mediatype Hyper do\n    action do\n      %{\n\n      }\n    end\n  end\nend'
+      module = 'defmodule ' + resourceName + ' do\n  use ' + apiName + '.Resource\n' + params + '\n  mediatype Hyper do' + action + affordance + '\n  end\nend'
       self.view.replace(edit, allcontent, module);
     else:
       sublime.error_message('File must be saved first')
