@@ -1,0 +1,10 @@
+[
+  {
+      "id" : "mazurka1",
+      "caption" : "Mazurka",
+      "children": [
+        {"caption": "Mazurka Resource", "command": "resource"},
+        {"caption": "Mazurka Test", "command": "test"}
+      ]
+  }
+]
