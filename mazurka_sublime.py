@@ -76,8 +76,6 @@ class TestCommand(sublime_plugin.TextCommand):
 
         newRouteArray.append(part)
 
-      print(newRouteArray)
-
       resourceName = str.join('.', newRouteArray)
 
       module = 'defmodule Test.' + resourceName + ' do\n  use Test.' + apiName + '.Resource\n\n  test "should respond with a 200" do\n    request()\n  after conn ->\n    conn\n    |> assert_status(200)\n    |> assert_json(%{"greeting" => _})\n  end\n\n  test "should respond with an affordance" do\n    affordance()\n  after conn ->\n    conn\n    |> assert_json(%{"href" => _})\n  end\nend\n'
