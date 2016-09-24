@@ -12,15 +12,14 @@ class ResourceCommand(sublime_plugin.TextCommand):
       newRouteArray = list()
       apiName = ''
       for i, part in enumerate(routeArray):
-        if part.find('.ex') != -1:
-          part = part.replace('.ex', '').upper()
+        if part.find('.ex') != -1: part = part.replace('.ex', '').upper()
         else: part = part.title()
 
         partList = re.split(r"_|-", part)
         if len(partList) > 1:
           part = ''.join(e.title() for e in partList)
 
-        if part == 'web': part = 'resource'
+        if part.lower() == 'web': part = 'Resource'
 
         if part.find('@') != -1:
           part = str.split(part, '@')[1] + '_'
