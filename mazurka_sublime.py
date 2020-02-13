@@ -32,7 +32,7 @@ class ResourceCommand(sublime_plugin.TextCommand):
 
         if i == 0: apiName = part
 
-        if part == 'POST': affordance = '\n    affordance do\n      %{\n\n      }\n    end\n'; action = '\n    action do\n\n    end'
+        if part == 'POST': affordance = '    affordance do\n      %{\n\n      }\n    end\n\n'; action = '\n    action do\n\n    end'
 
         newRouteArray.append(part)
 
