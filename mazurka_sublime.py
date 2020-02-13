@@ -42,7 +42,7 @@ class ResourceCommand(sublime_plugin.TextCommand):
 
       resourceName = str.join('.', newRouteArray)
 
-      module = 'defmodule ' + resourceName + ' do\n  use ' + apiName + '.Resource\n' + params + '\n  mediatype Hyper do' + action + affordance + '\n  end\nend'
+      module = 'defmodule ' + resourceName + ' do\n  use ' + apiName + '.Resource\n' + params + '\n  mediatype Hyper do' + affordance + action + '\n  end\nend'
       self.view.replace(edit, allcontent, module);
     else:
       sublime.error_message('File must be saved first')
